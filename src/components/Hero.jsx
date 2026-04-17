@@ -1,51 +1,57 @@
 import React from 'react';
-import heroBg from '../assets/hero-bg.png';
+import heroBg from '../assets/hero-bg-new.png';
 
 const Hero = () => {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background with overlay */}
+    <section id="inicio" className="relative min-h-[90vh] flex items-center overflow-hidden py-0">
+      {/* Background with subtle medical tech aesthetic */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${heroBg})`,
-          filter: 'brightness(0.4)'
+          opacity: '0.8'
         }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-color/50 to-bg-color z-0"></div>
+      
+      {/* Soft gradient overlay for readability and "premium" feel */}
+      <div className="absolute inset-0 bg-gradient-to-r from-bg-color via-bg-color/80 to-transparent z-1"></div>
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-6 pt-20">
         <div className="max-w-3xl">
-          <h4 className="neon-text font-tech tracking-[0.3em] mb-4 animate-in fade-in slide-in-from-left duration-700">
-            Ingeniería Biomédica
-          </h4>
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 animate-in fade-in slide-in-from-bottom duration-1000">
-            LA UNIÓN DE LA <span className="bio-text">VIDA</span> <br /> 
-            Y LA <span className="neon-text">TECNOLOGÍA</span>
+          <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-in fade-in slide-in-from-left duration-700">
+            <span className="text-primary font-tech font-bold text-xs tracking-[0.3em] uppercase">
+              Innovación en Ingeniería Biomédica
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-8 animate-in fade-in slide-in-from-bottom duration-1000">
+            EL FUTURO DE LA <span className="text-primary">SALUD</span> <br /> 
+            ES <span className="bio-text">HUMANO</span> Y <span className="text-primary">DIGITAL</span>
           </h1>
-          <p className="text-lg text-text-dim mb-10 max-w-xl animate-in fade-in duration-1000 delay-300">
-            Explorando las fronteras donde la biología humana se encuentra con la innovación digital. 
-            Desde prótesis inteligentes hasta algoritmos neuronales, estamos redefiniendo el futuro de la medicina.
+          
+          <p className="text-xl text-text-dim mb-12 max-w-xl animate-in fade-in duration-1000 delay-300 leading-relaxed">
+            Estamos redefiniendo la frontera entre la biología y la tecnología para crear soluciones que no solo traten, sino que transformen la vida humana a través de la excelencia técnica.
           </p>
-          <div className="flex gap-4 animate-in fade-in duration-1000 delay-500">
-            <button className="px-8 py-3 rounded-full bg-primary text-bg-color font-bold font-tech uppercase tracking-widest hover:scale-105 transition-transform">
-              Ver Innovaciones
+          
+          <div className="flex flex-wrap gap-5 animate-in fade-in duration-1000 delay-500">
+            <button className="btn-premium btn-primary text-sm px-10">
+              Ver Soluciones
             </button>
-            <button className="px-8 py-3 rounded-full border border-white/20 hover:border-primary transition-colors font-tech uppercase tracking-widest">
+            <button className="btn-premium btn-outline text-sm px-10">
               Nuestra Visión
             </button>
           </div>
         </div>
       </div>
 
-      {/* Decorative pulse element */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-        <div className="w-6 h-10 rounded-full border-2 border-text-dim flex justify-center p-1">
-          <div className="w-1 h-3 bg-primary rounded-full animate-pulse"></div>
-        </div>
+      {/* Modern scroll indicator */}
+      <div className="absolute bottom-10 left-6 flex flex-col items-center gap-3 opacity-40 md:flex hidden">
+        <span className="font-tech text-[10px] tracking-[0.3em] uppercase rotate-90 mb-8 origin-left whitespace-nowrap">Desliza para explorar</span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-primary to-transparent"></div>
       </div>
     </section>
   );
 };
 
 export default Hero;
+
