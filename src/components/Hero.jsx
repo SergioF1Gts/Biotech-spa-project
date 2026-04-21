@@ -1,57 +1,81 @@
 import React from 'react';
-import heroBg from '../assets/hero-bg-new.png';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
-  return (
-    <section id="inicio" className="relative min-h-[90vh] flex items-center overflow-hidden py-0">
-      {/* Background with subtle medical tech aesthetic */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: `url(${heroBg})`,
-          opacity: '0.8'
-        }}
-      ></div>
-      
-      {/* Soft gradient overlay for readability and "premium" feel */}
-      <div className="absolute inset-0 bg-gradient-to-r from-bg-color via-bg-color/80 to-transparent z-1"></div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    }
+  };
 
-      <div className="container relative z-10 mx-auto px-6 pt-20">
-        <div className="max-w-3xl">
-          <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-in fade-in slide-in-from-left duration-700">
-            <span className="text-primary font-tech font-bold text-xs tracking-[0.3em] uppercase">
-              Innovación en Ingeniería Biomédica
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  return (
+    <section id="inicio" className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20 bg-bio-bg">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-bio-primary/5 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] bg-bio-secondary/5 rounded-full blur-[120px] animate-pulse delay-700"></div>
+      </div>
+
+      <div className="container relative z-10 mx-auto text-center px-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto"
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-bio-primary/5 border border-bio-primary/10 mb-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-bio-primary"></span>
+            <span className="text-bio-primary font-tech font-bold text-[9px] tracking-[0.4em] uppercase">
+              Precision Bio-Engineering v4.0
             </span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-8 animate-in fade-in slide-in-from-bottom duration-1000">
-            EL FUTURO DE LA <span className="text-primary">SALUD</span> <br /> 
-            ES <span className="bio-text">HUMANO</span> Y <span className="text-primary">DIGITAL</span>
-          </h1>
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-10 tracking-tighter text-bio-text uppercase">
+            EL FUTURO DE LA <span className="text-bio-primary font-normal">SALUD</span> <br /> 
+            ES <span className="text-gradient-secondary">HUMANO</span>
+          </motion.h1>
           
-          <p className="text-xl text-text-dim mb-12 max-w-xl animate-in fade-in duration-1000 delay-300 leading-relaxed">
-            Estamos redefiniendo la frontera entre la biología y la tecnología para crear soluciones que no solo traten, sino que transformen la vida humana a través de la excelencia técnica.
-          </p>
+          <motion.p variants={itemVariants} className="text-base md:text-lg text-bio-dim mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+            Fusionamos biología profunda con computación avanzada para redefinir el bienestar humano a través de interfaces orgánicas de alta precisión técnica.
+          </motion.p>
           
-          <div className="flex flex-wrap gap-5 animate-in fade-in duration-1000 delay-500">
-            <button className="btn-premium btn-primary text-sm px-10">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-6">
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-premium btn-primary text-[10px] px-12 py-4"
+            >
               Ver Soluciones
-            </button>
-            <button className="btn-premium btn-outline text-sm px-10">
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-premium btn-outline text-[10px] px-12 py-4"
+            >
               Nuestra Visión
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Modern scroll indicator */}
-      <div className="absolute bottom-10 left-6 flex flex-col items-center gap-3 opacity-40 md:flex hidden">
-        <span className="font-tech text-[10px] tracking-[0.3em] uppercase rotate-90 mb-8 origin-left whitespace-nowrap">Desliza para explorar</span>
-        <div className="w-[1px] h-16 bg-gradient-to-b from-primary to-transparent"></div>
-      </div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.3 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-10 flex flex-col items-center gap-4 hidden md:flex"
+      >
+        <div className="w-[1px] h-12 bg-gradient-to-b from-bio-primary to-transparent"></div>
+      </motion.div>
     </section>
   );
 };
 
 export default Hero;
-
